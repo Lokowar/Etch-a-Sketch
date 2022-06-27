@@ -37,10 +37,13 @@ button {
 }
 
 .board {
-    display: grid;
-    grid-template-columns: auto auto auto;
+    display: flex;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
     background-color: white;
-    margin-right: 132px;
 }
 
 .grid {
