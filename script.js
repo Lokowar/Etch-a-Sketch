@@ -1,5 +1,6 @@
 $(document).ready(function() {
     function gridCreation(column_n, row_n){
+        $(".column").remove();
         for(j = 0; j < column_n; j++){
             const column = document.createElement("div");
             column.className = "column";
@@ -18,6 +19,7 @@ $(document).ready(function() {
     const button1 = document.getElementById("clear");
     const button2 = document.getElementById("erase");
     const button3 = document.getElementById("random");
+    const button4 = document.getElementById("reset");
 
     const slider = document.getElementById("myRange");
 
@@ -58,17 +60,20 @@ $(document).ready(function() {
         mode = 2;
     });
 
-    $(".grid").on('mouseover', function(){
+    $(button4).click(function(){
+        gridCreation(column_n, row_n);
+    });
+
+    $(document).on('mouseover','.grid', function(){
         if(mode === 0){
             $(this).css("background-color", "black");
-            console.log(slider.value);
         }
         if(mode === 1){
-            $(this).css("background-color", "white");
+            $(".grid").css("background-color", "white");
         }
         if(mode === 2){
             rand = Math.floor(Math.random() * 16777215);
-            $(this).css("background-color", "#"+rand);
+            $(".grid").css("background-color", "#"+rand);
         }
     });
 });
