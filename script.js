@@ -76,4 +76,9 @@ $(document).ready(function() {
             $(".grid").css("background-color", "#"+rand);
         }
     });
+
+    $(".slider").change(function(){
+        column_n = slider.value;
+        row_n = slider.value;
+    });
 });
