@@ -14,12 +14,14 @@ $(document).ready(function() {
         return;
     }
 
+    /* Variaveis */
     const board = document.getElementsByClassName("board");
 
     const button1 = document.getElementById("clear");
     const button2 = document.getElementById("erase");
     const button3 = document.getElementById("random");
     const button4 = document.getElementById("reset");
+    const button5 = document.getElementById("black");
 
     const slider = document.getElementById("myRange");
 
@@ -27,56 +29,55 @@ $(document).ready(function() {
 
     let mode = 0;
 
+    /* Tamano da tela */
     let column_n = slider.value;
     let row_n = slider.value;
 
+    /* Cria a tela pela primeira vez */
     gridCreation(column_n, row_n);
     
-
+    /* Limpa a tela */
     $(button1).click(function(){
         for(i = 0; i < 18; i++){
             $(grid).css("background-color", "white");
         }
     });
 
+    /* Apaga um quadrado */
     $(button2).click(function(){
-        if(mode === 0){
-            mode = 1;
-            return;
-        }
-
-        if(mode === 1){
-            mode = 0;
-            return;
-        }
-
-        if(mode === 2){
-            mode = 1;
-            return;
-        }
+        mode = 1;
     });
 
+    /* Cor aleatória */
     $(button3).click(function(){
         mode = 2;
     });
 
+    /* Reseta toda a imagem */
     $(button4).click(function(){
         gridCreation(column_n, row_n);
     });
 
+    /* Retorna a cor padrão */
+    $(button5).click(function(){
+        mode = 0;
+    });
+
+    /* Aplica a função de "mouseover" */
     $(document).on('mouseover','.grid', function(){
         if(mode === 0){
             $(this).css("background-color", "black");
         }
         if(mode === 1){
-            $(".grid").css("background-color", "white");
+            $(this).css("background-color", "white");
         }
         if(mode === 2){
             rand = Math.floor(Math.random() * 16777215);
-            $(".grid").css("background-color", "#"+rand);
+            $(this).css("background-color", "#"+rand);
         }
     });
 
+    /* Aplica a alteração do slider */
     $(".slider").change(function(){
         column_n = slider.value;
         row_n = slider.value;
